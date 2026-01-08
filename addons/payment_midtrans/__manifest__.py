@@ -5,8 +5,9 @@
     "summary": "Midtrans Payment Provider for Odoo",
     "depends": ["payment"],
     "data": [
+        "security/ir.model.access.csv",
         "views/payment_provider_view.xml",
-        "views/payment_templates.xml",
+        "data/payment_provider_data.xml",
     ],
     "assets": {
         "web.assets_frontend": [

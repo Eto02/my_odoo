@@ -1,19 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-    <record id="payment_provider_midtrans_form" model="ir.ui.view">
-        <field name="name">payment.provider.midtrans.form</field>
+    
+    <record id="payment_provider_form_midtrans" model="ir.ui.view">
+        <field name="name">payment.provider.form.midtrans</field>
         <field name="model">payment.provider</field>
         <field name="inherit_id" ref="payment.payment_provider_form"/>
         <field name="arch" type="xml">
-
-            <xpath expr="//group[@name='provider_credentials']" position="inside">
-                <field name="midtrans_environment"/>
-                <field name="midtrans_client_key"/>
-                <field name="midtrans_server_key" password="True"/>
+            <xpath expr="//group[@name='provider_config']" position="after">
+                <group name="midtrans_credentials" invisible="code != 'midtrans'">
+                    <group>
+                        <field name="midtrans_merchant_id" placeholder="M123456"/>
+                        <field name="midtrans_server_key" password="True" placeholder="SB-Mid-server-xxxxx"/>
+                        <field name="midtrans_client_key" placeholder="SB-Mid-client-xxxxx"/>
+                    </group>
+                    <group>
+                        <field name="midtrans_use_sandbox"/>
+                        <field name="midtrans_payment_methods" widget="many2many_tags"/>
+                    </group>
+                </group>
             </xpath>
-
         </field>
     </record>
-
 </odoo>

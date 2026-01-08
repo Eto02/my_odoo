@@ -31,5 +31,3 @@ services:
     command: >
       odoo
       -c /etc/odoo/odoo.conf
-      -d ${POSTGRES_DB}
-      -i base
