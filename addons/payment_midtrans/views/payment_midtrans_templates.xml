@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- 
+        Template untuk POS Payment Screen
+        Menampilkan instruksi pembayaran di POS
+    -->
+    <template id="midtrans_pos_payment" name="Midtrans POS Payment">
+        <div class="pos-payment-container">
+            <div class="payment-status text-center">
+                <i class="fa fa-qrcode fa-5x text-primary mb-3"></i>
+                <h3>Scan QR Code untuk Bayar</h3>
+                <p class="text-muted">
+                    QR Code akan ditampilkan di layar customer
+                </p>
+                
+                <!-- QR Code container (akan diisi oleh JS) -->
+                <div id="midtrans-qr-container" class="mt-4"></div>
+                
+                <!-- Payment instructions -->            </div>
+        </div>
+        <div class="mt-4">
+            <h5>Instruksi:</h5>
+            <ol class="text-left d-inline-block">
+                <li>Buka aplikasi e-wallet (GoPay, OVO, Dana)</li>
+                <li>Scan QR Code yang ditampilkan</li>
+                <li>Konfirmasi pembayaran di aplikasi</li>
+                <li>Tunggu notifikasi pembayaran berhasil</li>
+            </ol>
+        </div>
+    </template>
+    
+    <!-- 
+        Opsi lain: Inline payment form (jika tidak mau pakai popup)
+        Uncomment jika ingin gunakan redirect penuh ke Midtrans
+    -->
+    <!--
+    <template id="midtrans_redirect_form" name="Midtrans Redirect Form">
+        <form method="post" t-att-action="redirect_url" target="_top">
+            <input type="hidden" name="snap_token" t-att-value="snap_token"/>
+            <button type="submit" class="btn btn-primary btn-lg btn-block">
+                Lanjutkan ke Pembayaran
+            </button>
+        </form>
+    </template>
+    -->
+</odoo>

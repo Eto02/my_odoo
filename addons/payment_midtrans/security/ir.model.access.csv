@@ -1,4 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_payment_midtrans_method_user,payment.midtrans.method.user,model_payment_midtrans_method,base.group_user,1,0,0,0
-access_payment_midtrans_method_manager,payment.midtrans.method.manager,model_payment_midtrans_method,account.group_account_manager,1,1,1,1
-access_payment_midtrans_method_system,payment.midtrans.method.system,model_payment_midtrans_method,base.group_system,1,1,1,1
+access_payment_provider_midtrans_user,payment.provider.midtrans.user,payment.model_payment_provider,base.group_user,1,0,0,0
+access_payment_provider_midtrans_manager,payment.provider.midtrans.manager,payment.model_payment_provider,account.group_account_manager,1,1,0,0
+access_payment_provider_midtrans_system,payment.provider.midtrans.system,payment.model_payment_provider,base.group_system,1,1,1,1
+access_payment_transaction_midtrans_user,payment.transaction.midtrans.user,payment.model_payment_transaction,base.group_user,1,0,0,0
+access_payment_transaction_midtrans_portal,payment.transaction.midtrans.portal,payment.model_payment_transaction,base.group_portal,1,0,0,0
+access_payment_transaction_midtrans_public,payment.transaction.midtrans.public,payment.model_payment_transaction,base.group_public,1,0,0,0

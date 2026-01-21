@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="payment_provider_form_midtrans" model="ir.ui.view">
+        <field name="name">payment.provider.form.midtrans</field>
+        <field name="model">payment.provider</field>
+        <field name="inherit_id" ref="payment.payment_provider_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='provider_credentials']" position="after">
+                <group name="midtrans_credentials" 
+                       string="Midtrans Credentials" 
+                       invisible="code != 'midtrans'">
+                    
+                    <!-- Column 1: Public credentials -->
+                    <group string="Public Information">
+                        <field name="midtrans_merchant_id" 
+                               placeholder="e.g., M123456"
+                               required="code == 'midtrans' and state != 'disabled'"/>
+                        
+                        <field name="midtrans_client_key" 
+                               placeholder="e.g., SB-Mid-client-xxxxx"
+                               required="code == 'midtrans' and state != 'disabled'"/>
+                        
+                        <field name="midtrans_environment" 
+                               widget="radio"
+                               required="code == 'midtrans' and state != 'disabled'"/>
+                        
+                        <field name="midtrans_method"
+                               widget="radio"
+                               required="code == 'midtrans' and state != 'disabled'"/>
+                    </group>
+                    
+                    <!-- Column 2: Private credentials -->
+                    <group string="Private Credentials">
+                        <field name="midtrans_server_key" 
+                               password="True" 
+                               placeholder="e.g., SB-Mid-server-xxxxx"
+                               required="code == 'midtrans' and state != 'disabled'"/>
+                    </group>
+                </group>
+                
+                <!-- Help text dan instructions -->
+                <group name="midtrans_help" invisible="code != 'midtrans'">
+                    <div class="alert alert-info" role="alert">
+                        <h4>Cara Mendapatkan Credentials:</h4>
+                        <ol>
+                            <li>Login ke <a href="https://dashboard.midtrans.com" target="_blank">Midtrans Dashboard</a></li>
+                            <li>Pilih environment (Sandbox untuk testing, Production untuk live)</li>
+                            <li>Buka menu <b>Settings</b> → <b>Access Keys</b></li>
+                            <li>Copy <b>Server Key</b>, <b>Client Key</b>, dan <b>Merchant ID</b></li>
+                        </ol>
+                        <h4 class="mt-3">Konfigurasi Webhook:</h4>
+                        <p>
+                            Untuk menerima notifikasi pembayaran, set <b>Payment Notification URL</b> 
+                            di Midtrans Dashboard ke:
+                        </p>
+                        <code>/payment/midtrans/notification</code>
+                        <p class="mt-2">
+                            <small><b>Note:</b> Webhook diperlukan agar status pembayaran dapat diupdate otomatis</small>
+                        </p>
+                    </div>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
