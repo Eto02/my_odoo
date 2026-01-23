@@ -2,6 +2,26 @@
 <odoo>
     
     <!-- 
+        Template untuk payment form redirect ke Midtrans
+        Digunakan untuk redirect flow payment
+    -->
+    <template id="midtrans_payment_form" name="Midtrans Payment Form">
+        <form method="post" t-att-action="redirect_url" target="_top">
+            <input type="hidden" name="snap_token" t-att-value="snap_token"/>
+            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+            <input type="hidden" name="reference" t-att-value="reference"/>
+            <input type="hidden" name="order_id" t-att-value="order_id"/>
+            <input type="hidden" name="amount" t-att-value="amount"/>
+            <input type="hidden" name="currency" t-att-value="currency"/>
+            <input type="hidden" name="return_url" t-att-value="return_url"/>
+            <button type="submit" class="btn btn-primary btn-lg" id="midtrans-payment-button">
+                <span>Lanjutkan ke Pembayaran Midtrans</span>
+                <i class="fa fa-arrow-right"/>
+            </button>
+        </form>
+    </template>
+    
+    <!-- 
         Template untuk POS Payment Screen
         Menampilkan instruksi pembayaran di POS
     -->
@@ -17,7 +37,8 @@
                 <!-- QR Code container (akan diisi oleh JS) -->
                 <div id="midtrans-qr-container" class="mt-4"></div>
                 
-                <!-- Payment instructions -->            </div>
+                <!-- Payment instructions -->
+            </div>
         </div>
         <div class="mt-4">
             <h5>Instruksi:</h5>
@@ -29,19 +50,4 @@
             </ol>
         </div>
     </template>
-    
-    <!-- 
-        Opsi lain: Inline payment form (jika tidak mau pakai popup)
-        Uncomment jika ingin gunakan redirect penuh ke Midtrans
-    -->
-    <!--
-    <template id="midtrans_redirect_form" name="Midtrans Redirect Form">
-        <form method="post" t-att-action="redirect_url" target="_top">
-            <input type="hidden" name="snap_token" t-att-value="snap_token"/>
-            <button type="submit" class="btn btn-primary btn-lg btn-block">
-                Lanjutkan ke Pembayaran
-            </button>
-        </form>
-    </template>
-    -->
 </odoo>
